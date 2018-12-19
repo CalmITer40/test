@@ -1,0 +1,131 @@
+﻿<Window x:Class="SeaBattle.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Sea Battle Server" Height="605" Width="1300" Loaded="Window_Loaded" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="Resources/icon.ico">
+    <Grid Name="grid" Background="AliceBlue">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="500"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="500"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="1" x:Name="MainPanel" HorizontalAlignment="Center" Height="122" Margin="0,52,0,0" VerticalAlignment="Top" Width="209">
+            <StackPanel.Background>
+                <RadialGradientBrush RadiusX="0.9" RadiusY="0.9" GradientOrigin="0.5,0.5">
+                    <GradientStop Color="AliceBlue" Offset="1"/>
+                    <GradientStop Color="#FF1D72BD"/>
+                </RadialGradientBrush>
+            </StackPanel.Background>
+            <RadioButton x:Name="b_four" Content="Четырёхпалубный" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Background="#FF80B1C9" Foreground="White" FontFamily="Segoe Print"/>
+            <RadioButton x:Name="b_three" Content="Трёхпалубный" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Background="#FF80B1C9" Foreground="White" FontFamily="Segoe Print"/>
+            <RadioButton x:Name="b_two" Content="Двухпалубный" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Background="#FF80B1C9" Foreground="White" FontFamily="Segoe Print"/>
+            <RadioButton x:Name="b_one" Content="Однопалубный" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Background="#FF80B1C9" Foreground="White" FontFamily="Segoe Print"/>
+        </StackPanel>
+        <Button Grid.Column="1" x:Name="game_run" Content="Начать игру" HorizontalAlignment="Left" Margin="43.075,26,0,0" VerticalAlignment="Top" Width="90" Click="Game_run_Click" Foreground="#FFFAFAFA" FontFamily="Segoe Print" BorderThickness="0">
+            <Button.Effect>
+                <DropShadowEffect Color="#FFB1ECE0"/>
+            </Button.Effect>
+            <Button.Background>
+                <RadialGradientBrush>
+                    <GradientStop Color="#FF80B1C9"/>
+                    <GradientStop Color="#FF4C88A6" Offset="1"/>
+                </RadialGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Content="Выход" Grid.Column="1" HorizontalAlignment="Right" Margin="0,26,43.264,0" VerticalAlignment="Top" Width="90" Click="Exit" FontFamily="Segoe Print" Foreground="White" BorderThickness="0">
+            <Button.Background>
+                <RadialGradientBrush>
+                    <GradientStop Color="#FF80B1C9" Offset="0"/>
+                    <GradientStop Color="#FF4C88A6" Offset="0.926"/>
+                </RadialGradientBrush>
+            </Button.Background>
+            <Button.Effect>
+                <DropShadowEffect Direction="235" Color="#FFB1ECE0"/>
+            </Button.Effect>
+        </Button>
+        <Button x:Name="random_full" Content="Случайно" Grid.Column="1" HorizontalAlignment="Left" Margin="45.075,179,0,0" VerticalAlignment="Top" Width="90" Click="RandomMap" Foreground="#FFFAFAFA" FontFamily="Segoe Print" BorderThickness="0">
+            <Button.Effect>
+                <DropShadowEffect Color="#FFB1ECE0" Direction="45"/>
+            </Button.Effect>
+            <Button.Background>
+                <RadialGradientBrush>
+                    <GradientStop Color="#FF80B1C9"/>
+                    <GradientStop Color="#FF4C88A6" Offset="1"/>
+                </RadialGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="bot" Content="Бот" Grid.Column="1" HorizontalAlignment="Right" Margin="0,179,43.264,0" VerticalAlignment="Top" Width="90" Foreground="#FFFAFAFA" FontFamily="Segoe Print" BorderThickness="0" Click="bot_Click">
+            <Button.Effect>
+                <DropShadowEffect Color="#FFB1ECE0" Direction="135"/>
+            </Button.Effect>
+            <Button.Background>
+                <RadialGradientBrush>
+                    <GradientStop Color="#FF80B1C9"/>
+                    <GradientStop Color="#FF4C88A6" Offset="1"/>
+                </RadialGradientBrush>
+            </Button.Background>
+        </Button>
+        <TextBlock Grid.Column="0" x:Name="Enemy" Foreground="Blue" Margin="20,0,0,0" Height="30" FontSize="16" FontFamily="Consolas" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="50"/>
+        <TextBlock Grid.Column="2" x:Name="My" Foreground="Blue" Margin="0,0,20,0" Height="30" FontSize="16" FontFamily="Consolas" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="50"/>
+        <TextBlock Grid.Column="1" x:Name="textBlock6" HorizontalAlignment="Center" FontSize="20" Height="30" Margin="0,533,0,0" TextWrapping="Wrap" Text="Подготовка" VerticalAlignment="Top" Width="220" TextAlignment="Center" FontFamily="Segoe Print" Foreground="#FF38518A"/>
+        <TextBox x:Name="message_t" Grid.Column="2" HorizontalAlignment="Left" Height="29" Margin="24.736,503,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="346" Text="Сообщение" FontSize="16" MouseLeftButtonUp="mouse_ClickUp" BorderBrush="#FF80B1C9" Foreground="#FF38518A"/>
+        <Button Content="Отправить" Grid.Column="2" HorizontalAlignment="Left" Height="29" Margin="375.736,503,0,0" VerticalAlignment="Top" Width="104" Click="SendMessage" Foreground="#FFFAFAFA" FontFamily="Segoe Print" BorderThickness="0">
+            <Button.Effect>
+                <DropShadowEffect Color="#FFB1ECE0"/>
+            </Button.Effect>
+            <Button.Background>
+                <RadialGradientBrush>
+                    <GradientStop Color="#FF80B1C9"/>
+                    <GradientStop Color="#FF4C88A6" Offset="1"/>
+                </RadialGradientBrush>
+            </Button.Background>
+        </Button>
+        <RichTextBox x:Name="chat" FontFamily="Arial" Grid.Column="1" HorizontalAlignment="Left" Height="204" Margin="10.075,328,0,0" VerticalAlignment="Top" Width="274" IsReadOnly="True" BorderBrush="#FF38518A">
+            <FlowDocument>
+                <Paragraph>
+
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
+        <TextBox x:Name="connect" HorizontalAlignment="Left" Height="29" Margin="20,503,0,0" TextWrapping="Wrap" Text="Адрес:порт" VerticalAlignment="Top" Width="282" FontSize="16" MouseLeftButtonUp="mouse_ClickUpConnect" BorderBrush="#FF80B1C9" Foreground="#FF38518A"/>
+        <Button x:Name="run" Content="Запустить" HorizontalAlignment="Left" Height="29" Margin="307,503,0,0" VerticalAlignment="Top" Width="84" Click="StartServer" Foreground="#FFFAFAFA" FontFamily="Segoe Print" BorderThickness="0">
+            <Button.Effect>
+                <DropShadowEffect Color="#FFB1ECE0"/>
+            </Button.Effect>
+            <Button.Background>
+                <RadialGradientBrush>
+                    <GradientStop Color="#FF80B1C9"/>
+                    <GradientStop Color="#FF4C88A6" Offset="1"/>
+                </RadialGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="stop" Content="Остановить" HorizontalAlignment="Left" Height="29" Margin="396,503,0,0" VerticalAlignment="Top" Width="94" Click="stop_Click" Foreground="#FFFAFAFA" FontFamily="Segoe Print" BorderThickness="0">
+            <Button.Effect>
+                <DropShadowEffect Color="#FFB1ECE0"/>
+            </Button.Effect>
+            <Button.Background>
+                <RadialGradientBrush>
+                    <GradientStop Color="#FF80B1C9"/>
+                    <GradientStop Color="#FF4C88A6" Offset="1"/>
+                </RadialGradientBrush>
+            </Button.Background>
+        </Button>
+        <Label Content="Чат" Grid.Column="1" HorizontalAlignment="Left" Height="25" Margin="10.075,298,0,0" VerticalAlignment="Top" Width="62" Foreground="#FF38518A" FontSize="14" FontStyle="Italic"/>
+        <TextBlock x:Name="player" Grid.Column="0" HorizontalAlignment="Center" Height="30" Margin="0,467,0,0" TextWrapping="Wrap" Text="Батька" VerticalAlignment="Top" Width="86" FontFamily="Segoe Print" FontSize="20" Foreground="#FF38518A"/>
+        <TextBlock x:Name="pc" Grid.Column="2" HorizontalAlignment="Center" Height="30" Margin="0,467,0,0" TextWrapping="Wrap" Text="Противник" VerticalAlignment="Top" Width="145" FontFamily="Segoe Print" FontSize="20" Foreground="#FF38518A"/>
+        <TextBlock x:Name="count" TextAlignment="Center" Grid.Column="1" HorizontalAlignment="Center" Height="30" Margin="0,225,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="208" FontFamily="Segoe Print" FontSize="16" Foreground="#FF38518A"/>
+        <TextBlock x:Name="timer" TextAlignment="Center" Grid.Column="1" HorizontalAlignment="Center" Height="30" Margin="43.075,260,43.264,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="208" FontFamily="Segoe Print" FontSize="16" Foreground="#FF38518A"/>
+        <TextBox x:Name="currentIp" Text="127.0.0.5" HorizontalAlignment="Left" Height="26" Margin="307,537,0,0" VerticalAlignment="Top" Width="183" BorderBrush="#FF80B1C9" TextAlignment="Center" FontSize="16" Foreground="#FF38518A"/>
+        <Button Content="IP" HorizontalAlignment="Left" Margin="242,537,0,0" VerticalAlignment="Top" Width="60" Click="Button_Click" Height="26" Foreground="#FFFAFAFA" FontFamily="Segoe Print" BorderThickness="0">
+            <Button.Effect>
+                <DropShadowEffect Color="#FFB1ECE0"/>
+            </Button.Effect>
+            <Button.Background>
+                <RadialGradientBrush>
+                    <GradientStop Color="#FF80B1C9"/>
+                    <GradientStop Color="#FF4C88A6" Offset="1"/>
+                </RadialGradientBrush>
+            </Button.Background>
+        </Button>
+
+    </Grid>
+</Window>
